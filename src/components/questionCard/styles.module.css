@@ -1,0 +1,20 @@
+.question {
+    display: block;
+    text-decoration: none;
+    color: black;
+    width: 80%;
+    background-color: rgb(245, 243, 243);
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.questionText {
+    margin: 0 0 10px;
+    font-size: 22px;
+}
+
+.questionInfo {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
