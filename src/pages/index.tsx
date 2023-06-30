@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Navbar from '../components/navbar/navbar';
+import Footer from '../components/footer/footer';
 import styles from './styles.module.css';
 import heroImage from '../assets/layered-steps-haikei.svg';
 import Link from 'next/link';
@@ -10,13 +11,14 @@ import QuestionCard from '../components/questionCard/questionCard';
 type QuestionProps = {
   id: string;
   text: string;
+  description: string;
   answersIds: [];
   creationDate: string;
 }
 
 type QuestionsProps = Array<QuestionProps> | null
 
-export default function HomePage({questionsData} : any) {
+export default function HomePage({ questionsData }: any) {
   const [questions, setQuestions] = useState<QuestionsProps>(questionsData);
   return (
     <>
@@ -37,30 +39,34 @@ export default function HomePage({questionsData} : any) {
         </div>
         <div className={styles.questionsSectionWrapper}>
           <div className={styles.container}>
-            <div>
-              <span>All Questions</span>
-              <Link href={'/'}>Ask Question</Link>
-            </div>
-            <div>
-              <span>
-              {questions && <span>{questions.length}</span>} questions</span>
-              <button>Answered</button>
-              <button>Unanswered</button>
+            <div className={styles.questionsSectionNavbar}>
+              <div className={styles.questionsNavbarTop}>
+                <span className={styles.questionsTitle}>All Questions</span>
+                <Link className={styles.addQuestionButton} href={'/'}>Ask Question</Link>
+              </div>
+              <div className={styles.questionsNavbarBottom}>
+                <span>
+                  {questions && <span>{questions.length}</span>} questions</span>
+                <button>Answered</button>
+                <button>Unanswered</button>
+              </div>
             </div>
             <div className={styles.questionsSection}>
-              {questions && questions.map((question: any) => 
-                  <QuestionCard
-                    key={question.id}
-                    id={question.id}
-                    text={question.text}
-                    answersNumber={question.answersIds}
-                    date={question.creationDate}
-                  />
-                )
+              {questions && questions.map((question: any) =>
+                <QuestionCard
+                  key={question.id}
+                  id={question.id}
+                  text={question.text}
+                  description={question.description}
+                  answersNumber={question.answersIds}
+                  date={question.creationDate}
+                />
+              )
               }
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
 
@@ -71,8 +77,8 @@ export default function HomePage({questionsData} : any) {
 export async function getServerSideProps() {
   try {
     const response = await axios.get('http://localhost:8080/questions');
-    const {questions} = response.data;
-    return {props: {questionsData: questions}};
+    const { questions } = response.data;
+    return { props: { questionsData: questions } };
   } catch (err) {
     console.log(err);
     return { props: { questionsData: null } };
