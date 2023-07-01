@@ -1,0 +1,31 @@
+.answer {
+    background-color: white;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.deleteButton {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
+
+.buttonsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.answerTextWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.answerDate {
+    align-self: flex-end;
+}

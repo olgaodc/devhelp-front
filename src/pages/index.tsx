@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 import heroImage from '../assets/layered-steps-haikei.svg';
 import Link from 'next/link';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import QuestionCard from '../components/questionCard/questionCard';
 
 type QuestionProps = {
@@ -16,7 +16,7 @@ type QuestionProps = {
   creationDate: string;
 }
 
-type QuestionsProps = Array<QuestionProps> | null
+type QuestionsProps = Array<QuestionProps> | null;
 
 export default function HomePage({ questionsData }: any) {
   const [questions, setQuestions] = useState<QuestionsProps>(questionsData);
@@ -52,7 +52,7 @@ export default function HomePage({ questionsData }: any) {
               </div>
             </div>
             <div className={styles.questionsSection}>
-              {questions && questions.map((question: any) =>
+              {questions && questions.map((question) =>
                 <QuestionCard
                   key={question.id}
                   id={question.id}
