@@ -22,11 +22,21 @@ const AnswerCard: FC<AnswerCardProps> = ({
 }) => {
   return (
     <div className={styles.answer} key={id}>
-      <button className={styles.deleteButton} onClick={onClickDeleteButton}>X</button>
+      <button 
+        className={styles.deleteButton} 
+        onClick={onClickDeleteButton}
+      >
+        X
+      </button>
       <div className={styles.buttonsSection}>
         <button className={styles.likeButton} onClick={onClickLikeButton}>+</button>
         <span className={styles.likesNumber}>{likes}</span>
-        <button className={styles.dislikeButton} onClick={onClickDislikeButton}>-</button>
+        <button 
+          className={styles.dislikeButton} 
+          onClick={onClickDislikeButton}
+        >
+          -
+        </button>
       </div>
       <div className={styles.answerTextWrapper}>
         <div className={styles.answerText}>{text}</div>

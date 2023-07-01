@@ -4,6 +4,7 @@ import Footer from '../../components/footer/footer';
 import AnswerCard from '../../components/answerCard/answerCard';
 import styles from './styles.module.css';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 type QuestionProps = {
   id: string;
@@ -24,11 +25,30 @@ type AnswerProps = {
 type AnswersProps = Array<AnswerProps> | null;
 
 const QuestionPage = ({ questionInfo }: any) => {
+  const router = useRouter();
+
   const [question, setQuestion] = useState<QuestionProps>(questionInfo[0]);
   const [answers, setAnswers] = useState<AnswersProps>(questionInfo[0].questionAnswers);
 
-  const deleteAnswer = async () => {
-    console.log('delete');
+  // const token = localStorage.getItem('token');
+  // console.log(token);
+  
+
+  const deleteAnswer = async (answerId: string) => {
+    try {
+      const response = await axios.delete(`http://localhost:8080/question/${question.id}/answer/${answerId}`, {
+        headers: {
+          authorization: localStorage.getItem('token'),
+        },
+      });
+      
+      if (response.status === 200) {
+        setAnswers(prevState => prevState ? prevState.filter(answer => answer.id !== answerId) : null);
+      }
+
+    } catch (err) {
+      router.push(`/logIn`);
+    }
   }
 
   const likeAnswer = async () => {
@@ -67,7 +87,7 @@ const QuestionPage = ({ questionInfo }: any) => {
                       text={answer.text}
                       likes={answer.likesNumber}
                       date={answer.creationDate}
-                      onClickDeleteButton={deleteAnswer}
+                      onClickDeleteButton={() => deleteAnswer(answer.id)}
                       onClickLikeButton={likeAnswer}
                       onClickDislikeButton={dislikeAnswer}
                     />  
@@ -96,10 +116,8 @@ export async function getServerSideProps(ctx: any) {
   try {
     const response = await axios.get(`http://localhost:8080/question/${ctx.query.id}`);
     const { question } = response.data;
-    // console.log(question);
     return { props: { questionInfo: question } };
   } catch (err) {
-    // console.log(err);
     return { props: { questionInfo: null } };
   }
 }

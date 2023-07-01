@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 import heroImage from '../assets/layered-steps-haikei.svg';
 import Link from 'next/link';
 import axios from 'axios';
-import {useState } from 'react';
+import { useState } from 'react';
 import QuestionCard from '../components/questionCard/questionCard';
 
 type QuestionProps = {
@@ -45,14 +45,21 @@ export default function HomePage({ questionsData }: any) {
                 <Link className={styles.addQuestionButton} href={'/'}>Ask Question</Link>
               </div>
               <div className={styles.questionsNavbarBottom}>
-                <span>
-                  {questions && <span>{questions.length}</span>} questions</span>
+                {questions && questions.length === Number(1) ? (
+                  <div className={styles.questionsNumber}>
+                    {questions.length} question
+                  </div>
+                ) : (
+                  <div className={styles.questionsNumber}>
+                    {questions && questions.length} questions
+                  </div>
+                )}
                 <button>Answered</button>
                 <button>Unanswered</button>
               </div>
             </div>
             <div className={styles.questionsSection}>
-              {questions && questions.map((question) =>
+              {questions && questions.sort((a, b) => Date.parse(b.creationDate) - Date.parse(a.creationDate)).map((question) =>
                 <QuestionCard
                   key={question.id}
                   id={question.id}

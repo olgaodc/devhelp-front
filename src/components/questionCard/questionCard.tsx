@@ -16,7 +16,13 @@ const QuestionCard: FC<QuestionCardProps> = ({ id, text, description, answersNum
       <h2 className={styles.questionText}>{text}</h2>
       <p className={styles.questionDescription}>{description}</p>
       <div className={styles.questionInfo}>
-        <span className={styles.questionAnswers}>{answersNumber.length} answers</span>
+        {answersNumber.length === Number(1) ? (
+          <span className={styles.questionAnswers}>
+            {answersNumber.length} answer
+          </span>
+        ) : (
+          <span className={styles.questionAnswers}>{answersNumber.length} answers</span>
+        )}
         <span className={styles.questionDate}>Asked {date.slice(0, 10)}</span>
       </div>
     </Link>
