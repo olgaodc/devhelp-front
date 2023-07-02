@@ -7,6 +7,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useState } from 'react';
 import QuestionCard from '../components/questionCard/questionCard';
+import { useRouter } from 'next/router';
 
 type QuestionProps = {
   id: string;
@@ -19,7 +20,32 @@ type QuestionProps = {
 type QuestionsProps = Array<QuestionProps> | null;
 
 export default function HomePage({ questionsData }: any) {
+  const router = useRouter(); 
   const [questions, setQuestions] = useState<QuestionsProps>(questionsData);
+
+  const deleteQuestion = async (id: string, event: any) => {
+    event.preventDefault();
+    try {
+      const response = await axios.delete(`http://localhost:8080/question/${id}`, {
+        headers: {
+          authorization: localStorage.getItem('token')
+        }
+      })
+
+      if (response.status === 200) {
+        
+        setQuestions(prevState => prevState ? prevState.filter(question => question.id !== id) : null);
+      }
+
+    } catch (err) {
+      // setTimeout (() => {
+      //   router.push('/logIn');
+      // }, 500)
+      router.push('/logIn');
+    }
+
+  }
+
   return (
     <>
       <Head>
@@ -67,6 +93,7 @@ export default function HomePage({ questionsData }: any) {
                   description={question.description}
                   answersNumber={question.answersIds}
                   date={question.creationDate}
+                  onClickDeleteButton={(event: any) => deleteQuestion(question.id, event)}
                 />
               )
               }

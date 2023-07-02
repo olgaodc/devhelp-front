@@ -10,8 +10,8 @@ type QuestionProps = {
   id: string;
   text: string;
   description: string;
-  answersIds: [];
-  questionAnswers: [];
+  answersIds: Array<string>;
+  questionAnswers: Array<AnswerProps>;
   creationDate: string;
 }
 
@@ -29,10 +29,7 @@ const QuestionPage = ({ questionInfo }: any) => {
 
   const [question, setQuestion] = useState<QuestionProps>(questionInfo[0]);
   const [answers, setAnswers] = useState<AnswersProps>(questionInfo[0].questionAnswers);
-
-  // const token = localStorage.getItem('token');
-  // console.log(token);
-  
+  const [newAnswerText, setNewAnswerText] = useState('');  
 
   const deleteAnswer = async (answerId: string) => {
     try {
@@ -43,11 +40,18 @@ const QuestionPage = ({ questionInfo }: any) => {
       });
       
       if (response.status === 200) {
+        //atvaizduoja visus atsakymus, be istrinto klausimo
         setAnswers(prevState => prevState ? prevState.filter(answer => answer.id !== answerId) : null);
+        //istrynus atsakyma atnaujina answers skaiciu
+        setQuestion(prevState=> ({
+          ...prevState,
+          answersIds: prevState.answersIds.filter(id => id !== answerId),
+        }));
       }
 
     } catch (err) {
       router.push(`/logIn`);
+      // console.log(err)
     }
   }
 
@@ -57,6 +61,34 @@ const QuestionPage = ({ questionInfo }: any) => {
 
   const dislikeAnswer = async () => {
     console.log('dislike');
+  }
+
+  const submitAnswer = async () => {
+    try {
+      const response = await axios.post(`http://localhost:8080/question/${question.id}/answer`, {
+        text: newAnswerText,
+      }, {
+        headers: {
+          authorization: localStorage.getItem('token')
+        }
+      });
+
+      if (response.status === 200) {
+        const newAnswer = response.data.answer;
+        //atvaizduoja visus atsakymus, kartu su nauju
+        setAnswers(prevState => prevState ? [...prevState, newAnswer] : [newAnswer]);
+        //pridejus nauja atsakyma atnaujina answers skaiciu
+        setQuestion(prevState => ({
+          ...prevState,
+          answersIds: [...prevState.answersIds, newAnswer.id],
+        }))
+        setNewAnswerText('');
+      }
+
+    } catch (err) {
+      router.push('/logIn');
+      // console.log(err)
+    }
   }
 
   return (
@@ -99,8 +131,17 @@ const QuestionPage = ({ questionInfo }: any) => {
 
             <div className={styles.newAnswerSection}>
               <h3 className={styles.newAnswerTitle}>Your Answer</h3>
-              <textarea className={styles.newAnswerBox}></textarea>
-              <button className={styles.submitButton}>Submit</button>
+              <textarea 
+                value={newAnswerText}
+                className={styles.newAnswerBox}
+                onChange={(event) => setNewAnswerText(event.target.value)}
+              ></textarea>
+              <button 
+                className={styles.submitButton}
+                onClick={submitAnswer}
+              >
+                Submit
+              </button>
             </div>
           </div>
         </div>

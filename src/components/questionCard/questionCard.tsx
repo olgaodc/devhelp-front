@@ -8,11 +8,31 @@ type QuestionCardProps = {
   description: string;
   answersNumber: [];
   date: string;
+  onClickDeleteButton: (event: any) => void;
 }
 
-const QuestionCard: FC<QuestionCardProps> = ({ id, text, description, answersNumber, date }) => {
+const QuestionCard: FC<QuestionCardProps> = ({ 
+  id, 
+  text,
+  description,
+  answersNumber, 
+  date, 
+  onClickDeleteButton, 
+}) => {
+
+  // const deleteQuestion = (e: any) => {
+  //   e.preventDefault();
+  //   onClickDeleteButton;
+  // }
+
   return (
     <Link className={styles.question} href={`/question/${id}`}>
+      <button
+        className={styles.deleteButton}
+        onClick={onClickDeleteButton}
+      >
+        X
+      </button>
       <h2 className={styles.questionText}>{text}</h2>
       <p className={styles.questionDescription}>{description}</p>
       <div className={styles.questionInfo}>
