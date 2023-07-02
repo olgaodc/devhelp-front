@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './styles.module.css';
 
 type AnswerCardProps = {
@@ -20,6 +20,7 @@ const AnswerCard: FC<AnswerCardProps> = ({
   onClickLikeButton, 
   onClickDislikeButton,
 }) => {
+  
   return (
     <div className={styles.answer} key={id}>
       <button 
@@ -29,7 +30,12 @@ const AnswerCard: FC<AnswerCardProps> = ({
         X
       </button>
       <div className={styles.buttonsSection}>
-        <button className={styles.likeButton} onClick={onClickLikeButton}>+</button>
+        <button 
+          className={styles.likeButton} 
+          onClick={onClickLikeButton}
+        >
+          +
+        </button>
         <span className={styles.likesNumber}>{likes}</span>
         <button 
           className={styles.dislikeButton} 

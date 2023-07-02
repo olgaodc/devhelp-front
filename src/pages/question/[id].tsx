@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/footer/footer';
 import AnswerCard from '../../components/answerCard/answerCard';
@@ -29,7 +29,8 @@ const QuestionPage = ({ questionInfo }: any) => {
 
   const [question, setQuestion] = useState<QuestionProps>(questionInfo[0]);
   const [answers, setAnswers] = useState<AnswersProps>(questionInfo[0].questionAnswers);
-  const [newAnswerText, setNewAnswerText] = useState('');  
+  const [newAnswerText, setNewAnswerText] = useState('');
+  const [message, setMessage] = useState('');
 
   const deleteAnswer = async (answerId: string) => {
     try {
@@ -38,32 +39,86 @@ const QuestionPage = ({ questionInfo }: any) => {
           authorization: localStorage.getItem('token'),
         },
       });
-      
+
       if (response.status === 200) {
         //atvaizduoja visus atsakymus, be istrinto klausimo
         setAnswers(prevState => prevState ? prevState.filter(answer => answer.id !== answerId) : null);
         //istrynus atsakyma atnaujina answers skaiciu
-        setQuestion(prevState=> ({
+        setQuestion(prevState => ({
           ...prevState,
           answersIds: prevState.answersIds.filter(id => id !== answerId),
         }));
       }
 
-    } catch (err) {
-      router.push(`/logIn`);
-      // console.log(err)
+    } catch (error: any) {
+      if (error.response.status == 401) {
+        router.push('/logIn');
+      } else {
+        console.log(error);
+      }
     }
   }
 
-  const likeAnswer = async () => {
-    console.log('like');
+  const likeAnswer = async (answerId: string) => {
+    try {
+      //mapinant iesko atsakyma kuri palaikino ir atnaujina laiku skaiciu
+      const updatedAnswers = answers ? answers.map((answer) => {
+        if (answer.id === answerId) {
+          return {...answer, likesNumber: answer.likesNumber + 1};
+        }
+        return answer;
+      }) : [];
+
+      const response = await axios.put(`http://localhost:8080/answer/${answerId}`, {
+        //funkcijoje suranda atnaujinto atsakymo laiku skaiciu
+        likesNumber: updatedAnswers.find((answer) => answer.id === answerId)?.likesNumber,
+      }, {
+        headers: {
+          authorization: localStorage.getItem('token')
+        }
+      });
+
+      if (response.status === 200) {
+        setAnswers(updatedAnswers);
+      }
+
+    } catch {
+      router.push('/logIn');
+    }
   }
 
-  const dislikeAnswer = async () => {
-    console.log('dislike');
+  const dislikeAnswer = async (answerId: string) => {
+    try {
+      //mapinant iesko atsakyma kuri palaikino ir atnaujina laiku skaiciu
+      const updatedAnswers = answers ? answers.map((answer) => {
+        if (answer.id === answerId) {
+          return {...answer, likesNumber: answer.likesNumber - 1};
+        }
+        return answer;
+      }) : [];
+
+      const response = await axios.put(`http://localhost:8080/answer/${answerId}`, {
+        //funkcijoje suranda atnaujinto atsakymo laiku skaiciu
+        likesNumber: updatedAnswers.find((answer) => answer.id === answerId)?.likesNumber,
+      }, {
+        headers: {
+          authorization: localStorage.getItem('token')
+        }
+      });
+
+      if (response.status === 200) {
+        setAnswers(updatedAnswers);
+      }
+
+    } catch {
+      router.push('/logIn');
+    }
   }
 
   const submitAnswer = async () => {
+    if (newAnswerText.length < 10) {
+      return setMessage(`Answer can't be less than 10 characters`);
+    }
     try {
       const response = await axios.post(`http://localhost:8080/question/${question.id}/answer`, {
         text: newAnswerText,
@@ -75,6 +130,7 @@ const QuestionPage = ({ questionInfo }: any) => {
 
       if (response.status === 200) {
         const newAnswer = response.data.answer;
+        setMessage('');
         //atvaizduoja visus atsakymus, kartu su nauju
         setAnswers(prevState => prevState ? [...prevState, newAnswer] : [newAnswer]);
         //pridejus nauja atsakyma atnaujina answers skaiciu
@@ -85,7 +141,7 @@ const QuestionPage = ({ questionInfo }: any) => {
         setNewAnswerText('');
       }
 
-    } catch (err) {
+    } catch {
       router.push('/logIn');
       // console.log(err)
     }
@@ -112,7 +168,7 @@ const QuestionPage = ({ questionInfo }: any) => {
                 )}
 
                 <div className={styles.answersSection}>
-                  {answers && answers.map(answer => 
+                  {answers && answers.map(answer =>
                     <AnswerCard
                       key={answer.id}
                       id={answer.id}
@@ -120,9 +176,9 @@ const QuestionPage = ({ questionInfo }: any) => {
                       likes={answer.likesNumber}
                       date={answer.creationDate}
                       onClickDeleteButton={() => deleteAnswer(answer.id)}
-                      onClickLikeButton={likeAnswer}
-                      onClickDislikeButton={dislikeAnswer}
-                    />  
+                      onClickLikeButton={() => likeAnswer(answer.id)}
+                      onClickDislikeButton={() => dislikeAnswer(answer.id)}
+                    />
                   )}
                 </div>
               </div>
@@ -131,17 +187,18 @@ const QuestionPage = ({ questionInfo }: any) => {
 
             <div className={styles.newAnswerSection}>
               <h3 className={styles.newAnswerTitle}>Your Answer</h3>
-              <textarea 
+              <textarea
                 value={newAnswerText}
                 className={styles.newAnswerBox}
                 onChange={(event) => setNewAnswerText(event.target.value)}
               ></textarea>
-              <button 
+              <button
                 className={styles.submitButton}
                 onClick={submitAnswer}
               >
                 Submit
               </button>
+              <div className={styles.message}>{message}</div>
             </div>
           </div>
         </div>
