@@ -17,10 +17,10 @@ const Navbar = () => {
                     <Link className={styles.itemLink} href={'/'}>Home</Link>
                   </li>
                   <li className={styles.navbarListItem}>
-                    <Link className={styles.itemLink} href={'/logIn'}>Log in</Link>
+                    <Link className={`${styles.itemLink} ${styles.logInButton}`} href={'/logIn'}>Log in</Link>
                   </li>
                   <li className={styles.navbarListItem}>
-                    <Link className={styles.itemLink} href={'/signUp'}>Sign up</Link>
+                    <Link className={`${styles.itemLink} ${styles.signUpButton}`} href={'/signUp'}>Sign up</Link>
                   </li>
                 </ul>
             </div>

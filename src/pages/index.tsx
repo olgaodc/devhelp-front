@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Navbar from '../components/navbar/navbar';
+import QuestionModal from '../components/questionModal/questionModal';
 import Footer from '../components/footer/footer';
 import styles from './styles.module.css';
 import heroImage from '../assets/layered-steps-haikei.svg';
@@ -22,6 +23,12 @@ type QuestionsProps = Array<QuestionProps> | null;
 export default function HomePage({ questionsData }: any) {
   const router = useRouter(); 
   const [questions, setQuestions] = useState<QuestionsProps>(questionsData);
+  const [showQuestionModal, setShowQuestionModal] = useState(false);
+  
+  //pridejus nauja klausima, atvaizduoja visus klausimus kartu su nauju
+  const addQuestion = (newQuestion: QuestionProps) => {
+    setQuestions(prevQuestions => prevQuestions ? [newQuestion, ...prevQuestions] : [newQuestion]);
+  }
 
   const deleteQuestion = async (id: string, event: any) => {
     event.preventDefault();
@@ -46,30 +53,50 @@ export default function HomePage({ questionsData }: any) {
 
   }
 
+  const openModal = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/auth`, {
+        headers: {
+          authorization: localStorage.getItem('token')
+        }
+      })
+  
+      if (response.status === 200) {
+        setShowQuestionModal(true);
+      } 
+    } catch {
+      router.push('/logIn');
+    }
+  }
+
   return (
     <>
       <Head>
         <title>DevHelp</title>
       </Head>
+
       <div className={styles.contentWrapper}>
         <Navbar />
+
         <div className={styles.heroBoxWrapper}>
           <div className={styles.container}>
             <div className={styles.heroBox}>
               <img className={styles.heroImage} src={heroImage.src}></img>
               <h1 className={styles.heroBoxTitle}>A public platform building the definitive collection of coding questions & answers</h1>
               <p className={styles.heroBoxDescription}>A community-based space to find and contribute answers to technical challenges. Whether you're a seasoned developer, a curious learner, or an expert in your field, our platform provides a vibrant community where you can connect with like-minded individuals to tackle technical hurdles. Together, we empower each other to overcome technical challenges and foster continuous learning in the ever-evolving world of technology.</p>
-              <Link className={styles.heroBoxButton} href={'/'}>Sign up</Link>
+              <Link className={styles.heroBoxButton} href={'/signUp'}>Sign up</Link>
             </div>
           </div>
         </div>
+
         <div className={styles.questionsSectionWrapper}>
           <div className={styles.container}>
             <div className={styles.questionsSectionNavbar}>
               <div className={styles.questionsNavbarTop}>
                 <span className={styles.questionsTitle}>All Questions</span>
-                <Link className={styles.addQuestionButton} href={'/'}>Ask Question</Link>
+                <button className={styles.addQuestionButton} onClick={openModal}>Ask Question</button>
               </div>
+              
               <div className={styles.questionsNavbarBottom}>
                 {questions && questions.length === Number(1) ? (
                   <div className={styles.questionsNumber}>
@@ -100,6 +127,12 @@ export default function HomePage({ questionsData }: any) {
             </div>
           </div>
         </div>
+        
+        {showQuestionModal && 
+        <QuestionModal 
+          closeModal={() => setShowQuestionModal(false)}
+          onQuestionAdded={addQuestion}
+        />}
         <Footer />
       </div>
     </>

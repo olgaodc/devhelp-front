@@ -24,7 +24,7 @@
     height: 100%;
     object-fit: cover;
     top: 0;
-    left: -20%;
+    left: -30%;
     z-index: -1;
 }
 
@@ -45,7 +45,8 @@
 .heroBoxDescription {
     margin: 0;
     font-size: 18px;
-    line-height: 120%;
+    line-height: 125%;
+    font-weight: 500;
 }
 
 .heroBoxButton {
@@ -53,8 +54,9 @@
     background-color: white;
     max-width: 100px;
     text-align: center;
-    padding: 8px 12px;
-    color: black;
+    padding: 8px 15px;
+    color: #6600FF;
+    font-weight: 600;
     /* margin-bottom: 20px; */
 }
 
@@ -83,9 +85,10 @@
 }
 
 .addQuestionButton {
-    text-decoration: none;
+    border: none;
     color: white;
-    padding: 8px 12px;
+    font-weight: 600;
+    padding: 8px 15px;
     background-color: #6600FF;
 }
 

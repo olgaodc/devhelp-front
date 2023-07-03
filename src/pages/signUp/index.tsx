@@ -5,6 +5,7 @@ import logoImage from '../../assets/logo.png';
 import styles from './styles.module.css';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -13,9 +14,10 @@ const SignUpPage = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState('');
+  const [isSuccess, setSuccess] = useState(false);
 
   const signUp = async () => {
-    if(!formValidation()) {
+    if (!formValidation()) {
       try {
         const response = await axios.post('http://localhost:8080/signUp', {
           name: name,
@@ -23,20 +25,22 @@ const SignUpPage = () => {
           email: email,
           password: password,
         });
-  
+
         if (response.status === 200) {
           clearAllInputs();
+          setSuccess(true);
+          setMessage('User created successfully');
           setTimeout(() => {
-            router.push('/');
+            router.push('/logIn');
           }, 1000);
         }
-  
-      } catch(err) {
+
+      } catch (err) {
         setMessage('Error, please try later');
-  
+
         setTimeout(() => {
         }, 1500);
-  
+
         console.log(err);
       }
     }
@@ -100,7 +104,7 @@ const SignUpPage = () => {
                 type="text"
                 placeholder='Name'
                 value={name}
-                onChange={(event) => {setName(event.target.value)}}
+                onChange={(event) => { setName(event.target.value) }}
               />
               <input
                 type="text"
@@ -113,21 +117,29 @@ const SignUpPage = () => {
               type="email"
               placeholder='Email'
               value={email}
-              onChange={(event) => {setEmail(event.target.value)}}
+              onChange={(event) => { setEmail(event.target.value) }}
             />
             <input
               type="password"
               placeholder='Password'
               value={password}
-              onChange={(event) => {setPassword(event.target.value)}}
+              onChange={(event) => { setPassword(event.target.value) }}
             />
-            <button 
+            <button
               className={styles.formButton}
               onClick={() => signUp()}
             >
               Sign up
             </button>
-            <div className={styles.message}>{message}</div>
+            <div className={styles.formTextWrapper}>
+              <span className={styles.formText}>Already have an account? </span>
+              <Link className={styles.formTextLink} href={'/logIn'}>
+                Log In
+              </Link>
+            </div>
+            {isSuccess ?
+              (<div className={styles.successMessage}>{message}</div>) : (<div className={styles.errorMessage}>{message}</div>)
+            }
           </div>
         </div>
       </div>

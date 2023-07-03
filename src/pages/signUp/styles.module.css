@@ -6,7 +6,7 @@
 }
 
 .formWrapper {
-    height: calc(100vh - 209px);
+    height: calc(100vh - 214px);
     margin-top: 80px;
 }
 
@@ -39,8 +39,29 @@
     padding: 4px 5px;
 }
 
+.formButton {
+    cursor: pointer;
+}
 
-.message {
+.formTextLink {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.formTextLink:hover {
+    color: #6600FF;
+    /* text-decoration: underline; */
+}
+
+
+.successMessage {
+    font-weight: 600;
+    color: #038b03;
+}
+
+.errorMessage {
     font-weight: 600;
     color: rgb(185, 28, 28);
 }

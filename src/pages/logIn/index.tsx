@@ -5,6 +5,7 @@ import logoImage from '../../assets/logo.png';
 import styles from './styles.module.css';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const LogInPage = () => {
   const router = useRouter();
@@ -22,14 +23,12 @@ const LogInPage = () => {
       if (response.status === 200) {
         const token = response.data.jwt;
         localStorage.setItem('token', token);
+        setMessage('');
         clearAllInputs();
+        router.push('/');
+      }
 
-        setTimeout(() => {
-          router.push('/');
-        }, 1000);
-      } 
-      
-    } catch (err) {
+    } catch {
       setMessage('Invalid email or password');
       // console.log(err);
     }
@@ -61,7 +60,11 @@ const LogInPage = () => {
               value={password}
               onChange={(event) => { setPassword(event.target.value) }}
             />
-            <button className={styles.formButton} onClick={() => { logIn() }}>Log in</button>
+            <button className={styles.formButton} onClick={logIn}>Log in</button>
+            <div className={styles.formTextWrapper}>
+              <span className={styles.formText}>Don't have an account yet? </span>
+              <Link className={styles.formTextLink} href={'/signUp'}>Sign Up</Link>
+            </div>
             <div className={styles.message}>{message}</div>
           </div>
         </div>

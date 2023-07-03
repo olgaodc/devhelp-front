@@ -46,3 +46,17 @@
 .navbarListItem {
     list-style-type: none;
 }
+
+.itemLink {
+    font-weight: 600;
+}
+
+.logInButton {
+    color: #6600FF;
+}
+
+.signUpButton {
+    background-color: #6600FF;
+    color: white;
+    padding: 8px 15px;
+}
