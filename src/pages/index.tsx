@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 import heroImage from '../assets/layered-steps-haikei.svg';
 import Link from 'next/link';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import QuestionCard from '../components/questionCard/questionCard';
 import { useRouter } from 'next/router';
 
@@ -24,10 +24,21 @@ export default function HomePage({ questionsData }: any) {
   const router = useRouter(); 
   const [questions, setQuestions] = useState<QuestionsProps>(questionsData);
   const [showQuestionModal, setShowQuestionModal] = useState(false);
+  const [displayQuestions, setDisplayQuestions] = useState<QuestionsProps>(questionsData);
+
+  const answeredQuestions = () => {
+    const filteredQuestions = questions ? questions.filter(question => question.answersIds.length > 0) : [];
+    setDisplayQuestions(filteredQuestions);
+  }
+
+  const unansweredQuestions = () => {
+    const filteredQuestions = questions ? questions.filter(question => question.answersIds.length === 0) : [];
+    setDisplayQuestions(filteredQuestions);
+  }
   
   //pridejus nauja klausima, atvaizduoja visus klausimus kartu su nauju
   const addQuestion = (newQuestion: QuestionProps) => {
-    setQuestions(prevQuestions => prevQuestions ? [newQuestion, ...prevQuestions] : [newQuestion]);
+    setDisplayQuestions(prevState => prevState ? [newQuestion, ...prevState] : [newQuestion]);
   }
 
   const deleteQuestion = async (id: string, event: any) => {
@@ -41,7 +52,7 @@ export default function HomePage({ questionsData }: any) {
 
       if (response.status === 200) {
         
-        setQuestions(prevState => prevState ? prevState.filter(question => question.id !== id) : null);
+        setDisplayQuestions(prevState => prevState ? prevState.filter(question => question.id !== id) : null);
       }
 
     } catch (err) {
@@ -98,21 +109,22 @@ export default function HomePage({ questionsData }: any) {
               </div>
               
               <div className={styles.questionsNavbarBottom}>
-                {questions && questions.length === Number(1) ? (
+                {displayQuestions && displayQuestions.length === Number(1) ? (
                   <div className={styles.questionsNumber}>
-                    {questions.length} question
+                    {displayQuestions.length} question
                   </div>
                 ) : (
                   <div className={styles.questionsNumber}>
-                    {questions && questions.length} questions
+                    {displayQuestions && displayQuestions.length} questions
                   </div>
                 )}
-                <button>Answered</button>
-                <button>Unanswered</button>
+                <button onClick={answeredQuestions}>Answered</button>
+                <button onClick={unansweredQuestions}>Unanswered</button>
+                <button onClick={() => setDisplayQuestions(questions)}>All Questions</button>
               </div>
             </div>
             <div className={styles.questionsSection}>
-              {questions && questions.sort((a, b) => Date.parse(b.creationDate) - Date.parse(a.creationDate)).map((question) =>
+              {displayQuestions && displayQuestions.sort((a, b) => Date.parse(b.creationDate) - Date.parse(a.creationDate)).map((question) =>
                 <QuestionCard
                   key={question.id}
                   id={question.id}

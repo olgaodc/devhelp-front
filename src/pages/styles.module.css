@@ -90,6 +90,7 @@
     font-weight: 600;
     padding: 8px 15px;
     background-color: #6600FF;
+    cursor: pointer;
 }
 
 .questionsNavbarBottom {
