@@ -1,26 +1,54 @@
 .question {
     display: block;
     text-decoration: none;
-    color: black;
-    width: 70%;
-    background-color: rgb(245, 243, 243);
+    color: #2f2c2c;
+    width: 850px;
+    background-color: #ffff;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px 4px #e6e5e5;
     position: relative;
+    transition: 0.3s;
 }
+
+/* .question:hover .questionText {
+    color: #4c35e3;
+} */
+
+.question:hover {
+    box-shadow: 5px 5px 20px 4px #c3c3c3;
+}
+
 
 .deleteButton {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    padding: 0;
+    top: 7px;
+    right: 7px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.deleteIcon {
+    display: block;
+    width: 18px;
+    transition: 0.2s;
+}
+
+.deleteIcon:hover {
+   transform: scale(1.2);
 }
 
 .questionText {
     margin: 0 0 10px;
     font-size: 22px;
+    font-weight: 600;
+    color: #2b2360;
 }
 
 .questionDescription {
+    line-height: 140%;
     overflow: hidden;
     position: relative;
     display: -webkit-box;
@@ -33,4 +61,26 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
+}
+
+.answersNumberWrapper {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.answersImage {
+    width: 20px;
+    display: block;
+}
+
+.answersNumber {
+    color: #4c35e3;
+    font-weight: 500;
+}
+
+@media (max-width: 949px) {
+    .question  {
+        width: 100%;
+    }
 }

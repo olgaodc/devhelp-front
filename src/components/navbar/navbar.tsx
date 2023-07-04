@@ -14,7 +14,7 @@ const Navbar = () => {
                 </Link>
                 <ul className={styles.navbarList}>
                   <li className={styles.navbarListItem}>
-                    <Link className={styles.itemLink} href={'/'}>Home</Link>
+                    <Link className={`${styles.itemLink} ${styles.home}`} href={'/'}>Home</Link>
                   </li>
                   <li className={styles.navbarListItem}>
                     <Link className={`${styles.itemLink} ${styles.logInButton}`} href={'/logIn'}>Log in</Link>

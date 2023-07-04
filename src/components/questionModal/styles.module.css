@@ -11,13 +11,46 @@
 }
   
 .questionModal {
-    background-color: white;
-    padding: 20px;
+    background-color: #fafafa;
+    padding: 20px 30px;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     position: relative;
+    max-width: 450px;
+}
+
+.modalTitle {
+    margin: 0 0 10px;
+    color: #4c35e3;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.modalDescription {
+    font-weight: 500;
+    line-height: 135%;
+}
+
+.closeButton {
+    position: absolute;
+    padding: 0;
+    top: 6px;
+    right: 6px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.closeIcon {
+    display: block;
+    width: 20px;
+    transition: 0.2s;
+}
+
+.closeIcon:hover {
+   transform: scale(1.2);
 }
 
 .inputWrapper {
@@ -26,8 +59,35 @@
     gap: 5px;
 }
 
-.closeButton {
-    position: absolute;
-    top: 6px;
-    right: 6px;
+.inputWrapper input, .inputWrapper textarea {
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    padding: 5px;
+    border-bottom: 1px solid #838383;
+    resize: none;
+    outline: none;
+}
+
+.inputWrapper textarea {
+    height: 60px;
+}
+
+.addButton {
+    cursor: pointer;
+    border: none;
+    max-width: 100px;
+    align-self: center;
+    padding: 8px 15px;
+    text-decoration: none;
+    background-color: #4c35e3;
+    color: white;
+    font-weight: 600;
+}
+
+.message {
+    font-weight: 600;
+    color: rgb(185, 28, 28);
+    align-self: center;
 }

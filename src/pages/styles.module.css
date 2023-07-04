@@ -5,10 +5,6 @@
     padding: 0 40px;
 }
 
-.heroBox {
-    position: relative;
-}
-
 /* .heroImage {
     position: absolute;
     width: 100%;
@@ -19,25 +15,28 @@
 } */
 
 .heroImage {
-    position: absolute;
-    /* width: 100%; */
-    height: 100%;
+    width: 40%;
     object-fit: cover;
-    top: 0;
-    left: -30%;
-    z-index: -1;
 }
+
+
 
 .heroBox {
     display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin: 80px 0 120px;
+}
+
+.heroBoxInfo {
+    max-width: 600px;
+    display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: 600px;
-    padding: 30px 0;
 }
 
 .heroBoxTitle {
-    font-size: 46px;
+    font-size: 58px;
     line-height: 125%;
     margin: 0;
 }
@@ -45,23 +44,29 @@
 .heroBoxDescription {
     margin: 0;
     font-size: 18px;
-    line-height: 125%;
+    line-height: 140%;
     font-weight: 500;
+    
 }
 
 .heroBoxButton {
     text-decoration: none;
-    background-color: white;
+    border-radius: 4px;
     max-width: 100px;
     text-align: center;
     padding: 8px 15px;
-    color: #6600FF;
+    background-color: #4c35e3;
+    color: white;
     font-weight: 600;
-    /* margin-bottom: 20px; */
+    transition: 0.3s;
+}
+
+.heroBoxButton:hover {
+    background-color: #6600ff;
 }
 
 .questionsSectionWrapper {
-    margin: 90px 0;
+    margin: 0 0 90px;
 }
 
 .questionsSectionNavbar {
@@ -72,7 +77,7 @@
 }
 
 .questionsNavbarTop {
-    width: 70%;
+    width: 850px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -80,23 +85,63 @@
 }
 
 .questionsTitle {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 600;
 }
 
 .addQuestionButton {
     border: none;
+    border-radius: 4px;
     color: white;
     font-weight: 600;
+    font-size: 16px;
     padding: 8px 15px;
-    background-color: #6600FF;
+    background-color: #4c35e3;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.addQuestionButton:hover {
+    background-color: #6600ff;
 }
 
 .questionsNavbarBottom {
-    width: 70%;
+    width: 850px;
     display: flex;
-    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 80px;
+}
+
+.questionsNumber {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.buttonsWrapper {
+    display: flex;
+    gap: 5px;
+}
+
+.buttonsWrapper button {
+    border: 1px solid #9b9bed;
+    cursor: pointer;
+    background-color: #fafafa;
+    padding: 6px 12px;
+    color: #7261df;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.buttonsWrapper button:hover {
+    color: #4c35e3;
+    border: 1px solid #4c35e3;
+}
+
+.buttonsWrapper button:focus {
+    color: #4c35e3;
+    border: 1px solid #4c35e3;
 }
 
 .questionsSection {
@@ -105,4 +150,10 @@
     align-items: center;
     gap: 30px;
     margin-top: 40px;
+}
+
+@media (max-width: 949px) {
+    .questionsNavbarTop, .questionsNavbarBottom  {
+        width: 100%;
+    }
 }

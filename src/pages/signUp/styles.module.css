@@ -41,6 +41,18 @@
 
 .formButton {
     cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    max-width: 100px;
+    padding: 8px 15px;
+    background-color: #4c35e3;
+    color: #fafafa;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.formButton:hover {
+    background-color: #6600FF;
 }
 
 .formTextLink {

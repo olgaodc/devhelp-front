@@ -5,6 +5,10 @@
     padding: 0 40px;
 }
 
+.questionSectionWrapper {
+    min-height: calc(100vh - 164px);
+}
+
 .question {
     display: flex;
     flex-direction: column;

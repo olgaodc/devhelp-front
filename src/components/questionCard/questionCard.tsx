@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.css';
+import answerIcons from '../../assets/answer_icon.png';
+import deleteIcon from '../../assets/x_icon.png';
 
 type QuestionCardProps = {
   id: string;
@@ -31,18 +33,20 @@ const QuestionCard: FC<QuestionCardProps> = ({
         className={styles.deleteButton}
         onClick={onClickDeleteButton}
       >
-        X
+        <img className={styles.deleteIcon} src={deleteIcon.src} alt="delete icon" />
       </button>
       <h2 className={styles.questionText}>{text}</h2>
       <p className={styles.questionDescription}>{description}</p>
       <div className={styles.questionInfo}>
-        {answersNumber.length === Number(1) ? (
-          <span className={styles.questionAnswers}>
-            {answersNumber.length} answer
+        <div className={styles.answersNumberWrapper}>
+          <img className={styles.answersImage} src={answerIcons.src} alt="" />
+          <span className={styles.answersNumber}>
+            {answersNumber.length} 
           </span>
-        ) : (
-          <span className={styles.questionAnswers}>{answersNumber.length} answers</span>
-        )}
+        </div>
+
+
+        
         <span className={styles.questionDate}>Asked {date.slice(0, 10)}</span>
       </div>
     </Link>

@@ -3,10 +3,10 @@ import Navbar from '../components/navbar/navbar';
 import QuestionModal from '../components/questionModal/questionModal';
 import Footer from '../components/footer/footer';
 import styles from './styles.module.css';
-import heroImage from '../assets/layered-steps-haikei.svg';
+import heroImage from '../assets/coding-image.webp';
 import Link from 'next/link';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import QuestionCard from '../components/questionCard/questionCard';
 import { useRouter } from 'next/router';
 
@@ -21,7 +21,7 @@ type QuestionProps = {
 type QuestionsProps = Array<QuestionProps> | null;
 
 export default function HomePage({ questionsData }: any) {
-  const router = useRouter(); 
+  const router = useRouter();
   const [questions, setQuestions] = useState<QuestionsProps>(questionsData);
   const [showQuestionModal, setShowQuestionModal] = useState(false);
   const [displayQuestions, setDisplayQuestions] = useState<QuestionsProps>(questionsData);
@@ -35,7 +35,7 @@ export default function HomePage({ questionsData }: any) {
     const filteredQuestions = questions ? questions.filter(question => question.answersIds.length === 0) : [];
     setDisplayQuestions(filteredQuestions);
   }
-  
+
   //pridejus nauja klausima, atvaizduoja visus klausimus kartu su nauju
   const addQuestion = (newQuestion: QuestionProps) => {
     setDisplayQuestions(prevState => prevState ? [newQuestion, ...prevState] : [newQuestion]);
@@ -51,7 +51,7 @@ export default function HomePage({ questionsData }: any) {
       })
 
       if (response.status === 200) {
-        
+
         setDisplayQuestions(prevState => prevState ? prevState.filter(question => question.id !== id) : null);
       }
 
@@ -71,10 +71,10 @@ export default function HomePage({ questionsData }: any) {
           authorization: localStorage.getItem('token')
         }
       })
-  
+
       if (response.status === 200) {
         setShowQuestionModal(true);
-      } 
+      }
     } catch {
       router.push('/logIn');
     }
@@ -92,10 +92,13 @@ export default function HomePage({ questionsData }: any) {
         <div className={styles.heroBoxWrapper}>
           <div className={styles.container}>
             <div className={styles.heroBox}>
+              <div className={styles.heroBoxInfo}>
+                <h1 className={styles.heroBoxTitle}>Unleash Your Coding Potential</h1>
+                <p className={styles.heroBoxDescription}>Connect, learn, and collaborate in our coding Q&A hub. Join developers, learners, and experts in a vibrant community. Tackle technical challenges together and foster continuous learning in the world of technology.</p>
+                <Link className={styles.heroBoxButton} href={'/signUp'}>Sign up</Link>
+              </div>
+
               <img className={styles.heroImage} src={heroImage.src}></img>
-              <h1 className={styles.heroBoxTitle}>A public platform building the definitive collection of coding questions & answers</h1>
-              <p className={styles.heroBoxDescription}>A community-based space to find and contribute answers to technical challenges. Whether you're a seasoned developer, a curious learner, or an expert in your field, our platform provides a vibrant community where you can connect with like-minded individuals to tackle technical hurdles. Together, we empower each other to overcome technical challenges and foster continuous learning in the ever-evolving world of technology.</p>
-              <Link className={styles.heroBoxButton} href={'/signUp'}>Sign up</Link>
             </div>
           </div>
         </div>
@@ -107,9 +110,10 @@ export default function HomePage({ questionsData }: any) {
                 <span className={styles.questionsTitle}>All Questions</span>
                 <button className={styles.addQuestionButton} onClick={openModal}>Ask Question</button>
               </div>
-              
+
               <div className={styles.questionsNavbarBottom}>
-                {displayQuestions && displayQuestions.length === Number(1) ? (
+                {displayQuestions &&
+                  displayQuestions.length === Number(1) ? (
                   <div className={styles.questionsNumber}>
                     {displayQuestions.length} question
                   </div>
@@ -118,9 +122,12 @@ export default function HomePage({ questionsData }: any) {
                     {displayQuestions && displayQuestions.length} questions
                   </div>
                 )}
-                <button onClick={answeredQuestions}>Answered</button>
-                <button onClick={unansweredQuestions}>Unanswered</button>
-                <button onClick={() => setDisplayQuestions(questions)}>All Questions</button>
+                <div className={styles.buttonsWrapper}>
+                  <button onClick={answeredQuestions}>Answered</button>
+                  <button onClick={unansweredQuestions}>Unanswered</button>
+                  <button onClick={() => setDisplayQuestions(questions)}>All Questions</button>
+                </div>
+
               </div>
             </div>
             <div className={styles.questionsSection}>
@@ -139,12 +146,12 @@ export default function HomePage({ questionsData }: any) {
             </div>
           </div>
         </div>
-        
-        {showQuestionModal && 
-        <QuestionModal 
-          closeModal={() => setShowQuestionModal(false)}
-          onQuestionAdded={addQuestion}
-        />}
+
+        {showQuestionModal &&
+          <QuestionModal
+            closeModal={() => setShowQuestionModal(false)}
+            onQuestionAdded={addQuestion}
+          />}
         <Footer />
       </div>
     </>
