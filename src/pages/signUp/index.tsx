@@ -98,7 +98,6 @@ const SignUpPage = () => {
           <div className={styles.form}>
             <img className={styles.logoImage} src={logoImage.src} />
             <h2 className={styles.formTitle}>Welcome to DevHelp</h2>
-            {/* <div className={styles.formDescription}>Sign up with your DevHelp account to continue</div> */}
             <div className={styles.nameInputWrapper}>
               <input
                 type="text"

@@ -65,7 +65,7 @@ const LogInPage = () => {
               <span className={styles.formText}>Don't have an account yet? </span>
               <Link className={styles.formTextLink} href={'/signUp'}>Sign Up</Link>
             </div>
-            <div className={styles.message}>{message}</div>
+            {message && <div className={styles.message}>{message}</div>}
           </div>
         </div>
       </div>

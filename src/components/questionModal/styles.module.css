@@ -18,7 +18,7 @@
     flex-direction: column;
     gap: 20px;
     position: relative;
-    max-width: 450px;
+    width: 450px;
 }
 
 .modalTitle {
@@ -65,7 +65,7 @@
     border-radius: 0;
     background-color: transparent;
     padding: 5px;
-    border-bottom: 1px solid #838383;
+    border-bottom: 1.2px solid #838383;
     resize: none;
     outline: none;
 }
@@ -77,17 +77,29 @@
 .addButton {
     cursor: pointer;
     border: none;
+    border-radius: 4px;
     max-width: 100px;
     align-self: center;
     padding: 8px 15px;
     text-decoration: none;
     background-color: #4c35e3;
-    color: white;
+    color: #fafafa;
     font-weight: 600;
+    transition: 0.3s;
+}
+
+.addButton:hover {
+    background-color: #6600ff;
 }
 
 .message {
     font-weight: 600;
     color: rgb(185, 28, 28);
     align-self: center;
+}
+
+@media (max-width: 510px) {
+    .questionModal {
+        width: 90%;
+    }
 }

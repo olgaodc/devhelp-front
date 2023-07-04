@@ -80,6 +80,7 @@
     width: 850px;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap-reverse;
     align-items: center;
     gap: 20px;
 }
@@ -115,11 +116,12 @@
 
 .questionsNumber {
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .buttonsWrapper {
     display: flex;
+    flex-wrap: wrap;
     gap: 5px;
 }
 
@@ -155,5 +157,48 @@
 @media (max-width: 949px) {
     .questionsNavbarTop, .questionsNavbarBottom  {
         width: 100%;
+    }
+}
+
+@media (max-width: 760px) {
+    .heroBox {
+        flex-direction: column;
+    }
+
+    .heroBoxInfo {
+        max-width: 100%;
+    }
+
+    .heroImage {
+        align-self: self-end;
+        width: unset;
+        max-width: 100%;
+        max-height: 260px;
+    }
+}
+
+@media (max-width: 510px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .heroBox {
+        margin: 40px 0 70px;
+    }
+
+    .heroBoxTitle {
+        font-size: 48px;
+    }
+
+    .questionsSectionWrapper {
+        margin-bottom: 70px;
+    }
+
+    .questionsSectionNavbar {
+        gap: 10px;
+    }
+
+    .questionsSection {
+        margin-top: 25px;
     }
 }

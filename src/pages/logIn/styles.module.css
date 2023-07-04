@@ -6,7 +6,7 @@
 }
 
 .formWrapper {
-    height: calc(100vh - 214px);
+    min-height: calc(100vh - 214px);
     margin-top: 80px;
 }
 
@@ -25,9 +25,20 @@
     margin: 0;
 }
 
+.formDescription {
+    font-weight: 500;
+    text-align: center;
+    line-height: 130%;
+}
+
 .form input {
     width: 300px;
     padding: 4px 5px;
+    outline: none;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1.2px solid #838383;
+    background-color: transparent;
 }
 
 .formButton {
@@ -46,6 +57,12 @@
     background-color: #6600FF;
 }
 
+.formText {
+    font-weight: 500;
+    text-align: center;
+    line-height: 130%;
+}
+
 .formTextLink {
     text-decoration: none;
     color: black;
@@ -61,4 +78,16 @@
 .message {
     font-weight: 600;
     color: rgb(185, 28, 28);
+}
+
+@media (max-width: 510px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .formWrapper {
+        min-height: calc(100vh - 194px);
+        margin-top: 60px;
+    }
+
 }

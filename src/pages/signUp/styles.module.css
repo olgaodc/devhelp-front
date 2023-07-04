@@ -37,6 +37,11 @@
 .form input {
     width: 400px;
     padding: 4px 5px;
+    outline: none;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1.2px solid #838383;
+    background-color: transparent;
 }
 
 .formButton {
@@ -53,6 +58,10 @@
 
 .formButton:hover {
     background-color: #6600FF;
+}
+
+.formText{
+    font-weight: 500;
 }
 
 .formTextLink {
@@ -76,4 +85,28 @@
 .errorMessage {
     font-weight: 600;
     color: rgb(185, 28, 28);
+}
+
+@media (max-width: 510px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .formWrapper {
+        min-height: calc(100vh - 194px);
+        margin-top: 60px;
+    }
+
+    .nameInputWrapper {
+        width: 100%;
+    }
+
+    .form .nameInputWrapper input {
+        width: 50%;
+    }
+    
+    .form input {
+        width: 100%;
+    }
+
 }
