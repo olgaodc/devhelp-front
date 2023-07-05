@@ -38,6 +38,7 @@ export default function HomePage({ questionsData }: any) {
 
   //pridejus nauja klausima, atvaizduoja visus klausimus kartu su nauju
   const addQuestion = (newQuestion: QuestionProps) => {
+    setQuestions(prevState => prevState ? [newQuestion, ...prevState] : [newQuestion]);
     setDisplayQuestions(prevState => prevState ? [newQuestion, ...prevState] : [newQuestion]);
   }
 
@@ -52,6 +53,7 @@ export default function HomePage({ questionsData }: any) {
 
       if (response.status === 200) {
 
+        setQuestions(prevState => prevState ? prevState.filter(question => question.id !== id) : null);
         setDisplayQuestions(prevState => prevState ? prevState.filter(question => question.id !== id) : null);
       }
 
@@ -94,7 +96,7 @@ export default function HomePage({ questionsData }: any) {
             <div className={styles.heroBox}>
               <div className={styles.heroBoxInfo}>
                 <h1 className={styles.heroBoxTitle}>Unleash Your Coding Potential</h1>
-                <p className={styles.heroBoxDescription}>Connect, learn, and collaborate in our coding Q&A hub. Join developers, learners, and experts in a vibrant community. Tackle technical challenges together and foster continuous learning in the world of technology.</p>
+                <p className={styles.heroBoxDescription}>Connect, learn and collaborate in our coding Q&A hub. Join developers, learners, and experts in a vibrant community. Tackle technical challenges together and foster continuous learning in the world of technology.</p>
                 <Link className={styles.heroBoxButton} href={'/signUp'}>Sign up</Link>
               </div>
 

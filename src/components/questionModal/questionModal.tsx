@@ -73,7 +73,7 @@ const QuestionModal: FC<QuestionModalProps> = ({ closeModal, onQuestionAdded }) 
         </button>
         <div>
           <h3 className={styles.modalTitle}>Ask a public question</h3>
-          <div className={styles.modalDescription}>Be specific and imagine you’re asking a question to another person.</div>
+          <div className={styles.modalDescription}>Be specific and imagine you’re asking another person a question</div>
         </div>
        
         <div className={styles.inputWrapper}>
