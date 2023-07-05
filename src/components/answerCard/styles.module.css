@@ -1,16 +1,43 @@
-.answer {
-    background-color: white;
-    padding: 20px;
-    position: relative;
+.answer{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     gap: 20px;
+    text-decoration: none;
+    color: #2f2c2c;
+    /* width: 850px; */
+    background-color: #fafafa;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px 4px #e6e5e5;
+    position: relative;
+    word-break: break-word;
+    /* word-break: break-all; */
+    transition: 0.3s;
 }
 
 .deleteButton {
+    display: none;
+}
+
+.answer:hover .deleteButton {
+    display: block;
     position: absolute;
-    top: 6px;
-    right: 6px;
+    padding: 0;
+    top: 5px;
+    right: 5px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.deleteIcon {
+    display: block;
+    width: 20px;
+    transition: 0.2s;
+}
+
+.deleteIcon:hover {
+   transform: scale(1.2);
 }
 
 .buttonsSection {
@@ -20,13 +47,61 @@
     align-items: center;
 }
 
+.likeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    padding: 7px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: 0.2s;
+}
+
+.likeButton:hover {
+    background-color: #ededed;
+}
+
+.arrowIcon {
+    width: 30px;
+    display: block;
+}
+
+.likesNumber {
+    font-weight: 600;
+    font-size: 18px;
+    /* color: #4c35e3; */
+}
+
 .answerTextWrapper {
     width: calc(100% - 44px);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    /* align-self: self-start;
+    height: 100%;
+    justify-content: space-between; */
+}
+
+.answerText {
+    line-height: 140%;
+    font-weight: 500;
+    
 }
 
 .answerDate {
-    align-self: flex-end;
+    /* align-self: flex-end; */
+    color: #515151;
+    font-weight: 500;
+    font-size: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #A3A3A3;
+}
+
+@media (max-width: 510px) {
+    .answer {
+        padding: 20px;
+        gap: 15px;
+    }
 }

@@ -7,30 +7,55 @@
 
 .questionSectionWrapper {
     min-height: calc(100vh - 164px);
+    margin-top: 60px;
+}
+
+.questionSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .question {
+    width: 90%;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: 30px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px 4px #e6e5e5;
+    padding: 25px;
+    /* border-top: 2px solid #4c35e3;
+    border-bottom: 2px solid #4c35e3; */
 }
 
 .questionTitle {
     margin: 0;
+    color: #4c35e3;
+    line-height: 130%;
+}
+
+.questionDescription {
+    line-height: 140%;
+    font-weight: 500;
 }
 
 .questionDate {
     align-self: flex-end;
+    color: #515151;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .answersNumber {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
-    margin: 20px 0;
+    margin: 70px 0 20px;
+    align-self: self-start;
 }
 
 .answersSection {
+    width: 85%;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -41,7 +66,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     margin-bottom: 60px;
 }
 
@@ -51,12 +76,68 @@
 }
 
 .newAnswerBox {
+    margin: 10px 0;
     width: 70%;
     height: 100px;
     resize: none;
+    border: 1px solid #f1f1f1;
+    border-radius: 4px;
+    outline: none;
+    background-color: #ffff;
+}
+
+.submitButton {
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 15px;
+    background-color: #4c35e3;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submitButton:hover {
+    background-color: #6600ff;
 }
 
 .message {
     font-weight: 600;
     color: rgb(185, 28, 28);
 }
+
+/* @media (max-width: 949px) {
+    .container {
+        padding: 0 20px;
+    }
+} */
+
+@media (max-width: 760px) {
+    .question {
+        width: 100%;
+    }
+
+    .questionTitle {
+        font-size: 20px;
+    }
+
+    .answersSection {
+        width: 95%;
+    }
+
+    .newAnswerBox {
+        width: 90%;
+    }
+}
+
+@media (max-width: 510px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .question {
+        padding: 20px;
+    }
+}
+

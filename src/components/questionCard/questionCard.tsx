@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.css';
 import answerIcons from '../../assets/answer_icon.png';
-import deleteIcon from '../../assets/x_icon.png';
+import deleteIcon from '../../assets/trash_icon.png';
 
 type QuestionCardProps = {
   id: string;

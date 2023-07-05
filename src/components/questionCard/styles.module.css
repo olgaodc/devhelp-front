@@ -3,8 +3,8 @@
     text-decoration: none;
     color: #2f2c2c;
     width: 850px;
-    background-color: #ffff;
-    padding: 20px;
+    background-color: #fafafa;
+    padding: 20px 25px;
     border-radius: 10px;
     box-shadow: 5px 5px 20px 4px #e6e5e5;
     position: relative;
@@ -27,8 +27,8 @@
     display: block;
     position: absolute;
     padding: 0;
-    top: 7px;
-    right: 7px;
+    top: 5px;
+    right: 5px;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -36,7 +36,7 @@
 
 .deleteIcon {
     display: block;
-    width: 18px;
+    width: 20px;
     transition: 0.2s;
 }
 
@@ -45,14 +45,17 @@
 }
 
 .questionText {
-    margin: 0 0 10px;
+    margin: 0;
     font-size: 22px;
     font-weight: 600;
-    color: #2b2360;
+    line-height: 130%;
+    /* color: #2b2360; */
 }
 
 .questionDescription {
     line-height: 140%;
+    font-weight: 500;
+    color: #515151;
     overflow: hidden;
     position: relative;
     display: -webkit-box;
@@ -65,6 +68,11 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
+}
+
+.questionDate {
+    color: #515151;
+    font-size: 14px;
 }
 
 .answersNumberWrapper {
@@ -84,7 +92,19 @@
 }
 
 @media (max-width: 949px) {
-    .question  {
+    .question {
         width: 100%;
+    }
+}
+
+@media (max-width: 760px) {
+    .questionText {
+       font-size: 20px;
+    }
+}
+
+@media (max-width: 510px) {
+    .question {
+        padding: 20px;
     }
 }

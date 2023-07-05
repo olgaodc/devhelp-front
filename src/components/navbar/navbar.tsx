@@ -51,9 +51,9 @@ const Navbar = () => {
           <div onClick={() => {
             setMenuOpen((prevState) => !prevState);
           }} className={styles.hamburgerMenu}>
-            <div className={styles.hamburgerLine}></div>
-            <div className={styles.hamburgerLine}></div>
-            <div className={styles.hamburgerLine}></div>
+            <div className={`${styles.hamburgerLine} ${isMenuOpen ? styles.open : ''}`}></div>
+            <div className={`${styles.hamburgerLine} ${isMenuOpen ? styles.open : ''}`}></div>
+            <div className={`${styles.hamburgerLine} ${isMenuOpen ? styles.open : ''}`}></div>
           </div>
         </div>
         <MobileMenu isMenuOpen={isMenuOpen} />
