@@ -14,6 +14,10 @@ const LogInPage = () => {
   const [message, setMessage] = useState('');
 
   const logIn = async () => {
+    if (!email || !password) {
+      return setMessage('Please fill all fields');
+    }
+    
     try {
       const response = await axios.post('https://devhelp-zl8r.onrender.com/logIn', {
         email: email,
