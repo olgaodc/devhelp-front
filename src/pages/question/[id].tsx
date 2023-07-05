@@ -34,7 +34,7 @@ const QuestionPage = ({ questionInfo }: any) => {
 
   const deleteAnswer = async (answerId: string) => {
     try {
-      const response = await axios.delete(`http://localhost:8080/question/${question.id}/answer/${answerId}`, {
+      const response = await axios.delete(`https://devhelp-zl8r.onrender.com/question/${question.id}/answer/${answerId}`, {
         headers: {
           authorization: localStorage.getItem('token'),
         },
@@ -69,7 +69,7 @@ const QuestionPage = ({ questionInfo }: any) => {
         return answer;
       }) : [];
 
-      const response = await axios.put(`http://localhost:8080/answer/${answerId}`, {
+      const response = await axios.put(`https://devhelp-zl8r.onrender.com/answer/${answerId}`, {
         //funkcijoje suranda atnaujinto atsakymo laiku skaiciu
         likesNumber: updatedAnswers.find((answer) => answer.id === answerId)?.likesNumber,
       }, {
@@ -97,7 +97,7 @@ const QuestionPage = ({ questionInfo }: any) => {
         return answer;
       }) : [];
 
-      const response = await axios.put(`http://localhost:8080/answer/${answerId}`, {
+      const response = await axios.put(`https://devhelp-zl8r.onrender.com/answer/${answerId}`, {
         //funkcijoje suranda atnaujinto atsakymo laiku skaiciu
         likesNumber: updatedAnswers.find((answer) => answer.id === answerId)?.likesNumber,
       }, {
@@ -120,7 +120,7 @@ const QuestionPage = ({ questionInfo }: any) => {
       return setMessage(`Answer can't be less than 10 characters`);
     }
     try {
-      const response = await axios.post(`http://localhost:8080/question/${question.id}/answer`, {
+      const response = await axios.post(`https://devhelp-zl8r.onrender.com/question/${question.id}/answer`, {
         text: newAnswerText,
       }, {
         headers: {
@@ -212,7 +212,7 @@ export default QuestionPage
 
 export async function getServerSideProps(ctx: any) {
   try {
-    const response = await axios.get(`http://localhost:8080/question/${ctx.query.id}`);
+    const response = await axios.get(`https://devhelp-zl8r.onrender.com/question/${ctx.query.id}`);
     const { question } = response.data;
     return { props: { questionInfo: question } };
   } catch (err) {

@@ -15,7 +15,7 @@ const LogInPage = () => {
 
   const logIn = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/logIn', {
+      const response = await axios.post('hhttps://devhelp-zl8r.onrender.com/logIn', {
         email: email,
         password: password,
       });

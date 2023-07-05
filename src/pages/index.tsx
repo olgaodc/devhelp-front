@@ -44,7 +44,7 @@ export default function HomePage({ questionsData }: any) {
   const deleteQuestion = async (id: string, event: any) => {
     event.preventDefault();
     try {
-      const response = await axios.delete(`http://localhost:8080/question/${id}`, {
+      const response = await axios.delete(`https://devhelp-zl8r.onrender.com/question/${id}`, {
         headers: {
           authorization: localStorage.getItem('token')
         }
@@ -66,7 +66,7 @@ export default function HomePage({ questionsData }: any) {
 
   const openModal = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/auth`, {
+      const response = await axios.get(`https://devhelp-zl8r.onrender.com/auth`, {
         headers: {
           authorization: localStorage.getItem('token')
         }
@@ -162,7 +162,7 @@ export default function HomePage({ questionsData }: any) {
 
 export async function getServerSideProps() {
   try {
-    const response = await axios.get('http://localhost:8080/questions');
+    const response = await axios.get('https://devhelp-zl8r.onrender.com/questions');
     const { questions } = response.data;
     return { props: { questionsData: questions } };
   } catch (err) {

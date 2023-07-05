@@ -16,7 +16,7 @@ const QuestionModal: FC<QuestionModalProps> = ({ closeModal, onQuestionAdded }) 
   const postQuestion = async () => {
     if (!formValidation()) {
       try {
-        const response = await axios.post('http://localhost:8080/question/', {
+        const response = await axios.post('https://devhelp-zl8r.onrender.com/question/', {
           text: text,
           description: description,
         }, {

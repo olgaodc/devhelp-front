@@ -19,7 +19,7 @@ const SignUpPage = () => {
   const signUp = async () => {
     if (!formValidation()) {
       try {
-        const response = await axios.post('http://localhost:8080/signUp', {
+        const response = await axios.post('https://devhelp-zl8r.onrender.com/signUp', {
           name: name,
           surname: surname,
           email: email,
