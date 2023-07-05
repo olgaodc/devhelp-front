@@ -17,7 +17,7 @@ body {
   overflow-x: hidden;
 }
 
-button, input {
+button, input, textarea {
   font-family: 'Montserrat', sans-serif;
 }
 

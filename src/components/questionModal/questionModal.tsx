@@ -16,7 +16,7 @@ const QuestionModal: FC<QuestionModalProps> = ({ closeModal, onQuestionAdded }) 
   const postQuestion = async () => {
     if (!formValidation()) {
       try {
-        const response = await axios.post('https://devhelp-zl8r.onrender.com/question/', {
+        const response = await axios.post('https://devhelp-zl8r.onrender.com/question', {
           text: text,
           description: description,
         }, {
@@ -31,7 +31,6 @@ const QuestionModal: FC<QuestionModalProps> = ({ closeModal, onQuestionAdded }) 
           setDescription('');
           closeModal();
           onQuestionAdded(newQuestion);
-          console.log(response);
         }
 
       } catch (err) {
