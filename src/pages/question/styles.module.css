@@ -7,7 +7,7 @@
 
 .questionSectionWrapper {
     min-height: calc(100vh - 164px);
-    margin-top: 60px;
+    margin: 60px 0;
 }
 
 .questionSection {
@@ -67,7 +67,6 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    margin-bottom: 60px;
 }
 
 .newAnswerTitle {
@@ -132,12 +131,24 @@
 }
 
 @media (max-width: 510px) {
+    .questionSectionWrapper {
+        margin-top: 40px;
+    }
+
     .container {
         padding: 0 20px;
     }
 
     .question {
         padding: 20px;
+    }
+
+    .answersNumber {
+        margin: 50px 0 10px;
+    }
+
+    .answersSection {
+        margin-bottom: 60px;
     }
 }
 
