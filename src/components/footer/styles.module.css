@@ -94,6 +94,14 @@
         gap: 15px;
     }
 
+    .logoImage {
+        width: 38px;
+    }
+    
+    .logoText {
+        font-size: 18px;
+    }
+
     .socialMediaListTitle {
         display: none;
     }

@@ -6,8 +6,8 @@
 }
 
 .formWrapper {
-    min-height: calc(100vh - 214px);
-    margin-top: 80px;
+    /* min-height: calc(100vh - 256px); */
+    margin: 80px 0 160px;
 }
 
 .form {
@@ -86,8 +86,8 @@
     }
 
     .formWrapper {
-        min-height: calc(100vh - 194px);
-        margin-top: 60px;
+        /* min-height: calc(100vh - 349px); */
+        margin: 60px 0 120px;
     }
 
 }

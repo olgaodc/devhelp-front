@@ -95,7 +95,6 @@
     border-radius: 4px;
     color: white;
     padding: 8px 15px;
-    /* transition: 0.3s; */
 }
 
 .signUpButton:hover {
@@ -136,6 +135,14 @@
 @media (max-width: 510px) {
     .container {
         padding: 0 20px;
+    }
+
+    .logoImage {
+        width: 38px;
+    }
+    
+    .logoText {
+        font-size: 18px;
     }
 
     .navbarList {

@@ -1,10 +1,8 @@
 .answer{
     display: flex;
-    /* align-items: center; */
     gap: 20px;
     text-decoration: none;
     color: #2f2c2c;
-    /* width: 850px; */
     background-color: #fafafa;
     padding: 25px;
     border-radius: 10px;
@@ -23,8 +21,8 @@
     display: block;
     position: absolute;
     padding: 0;
-    top: 5px;
-    right: 5px;
+    top: 10px;
+    right: 10px;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -71,7 +69,6 @@
 .likesNumber {
     font-weight: 600;
     font-size: 18px;
-    /* color: #4c35e3; */
 }
 
 .answerTextWrapper {
@@ -79,9 +76,6 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    /* align-self: self-start;
-    height: 100%;
-    justify-content: space-between; */
 }
 
 .answerText {
@@ -91,7 +85,6 @@
 }
 
 .answerDate {
-    /* align-self: flex-end; */
     color: #515151;
     font-weight: 500;
     font-size: 14px;
@@ -101,7 +94,7 @@
 
 @media (max-width: 510px) {
     .answer {
-        padding: 20px;
-        gap: 15px;
+        padding: 15px 15px 15px 8px;
+        gap: 10px;
     }
 }
