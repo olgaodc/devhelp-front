@@ -50,6 +50,7 @@
 
 .questionDescription {
     line-height: 140%;
+    margin: 15px 0;
     font-weight: 500;
     color: #515151;
     overflow: hidden;
@@ -90,6 +91,12 @@
 @media (max-width: 949px) {
     .question {
         width: 100%;
+    }
+}
+
+@media (max-width: 760px) {
+    .questionDescription {
+        margin: 10px 0;
     }
 }
 

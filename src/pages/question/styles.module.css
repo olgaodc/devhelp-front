@@ -129,6 +129,7 @@
 
     .question {
         padding: 15px;
+        gap: 10px;
     }
 
     .answersNumber {
