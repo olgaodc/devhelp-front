@@ -88,6 +88,98 @@
     font-weight: 500;
 }
 
+.deleteModalWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+  
+.deleteModal {
+    background-color: #fafafa;
+    padding: 20px 30px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    width: 450px;
+}
+
+.deleteModalTitle {
+    margin: 0;
+    color: #4c35e3;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.deleteModalDescription {
+    font-weight: 500;
+    line-height: 140%;
+    margin-bottom: 10px;
+}
+
+.closeButton {
+    position: absolute;
+    padding: 0;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.closeIcon {
+    display: block;
+    width: 20px;
+    transition: 0.2s;
+}
+
+.closeIcon:hover {
+   transform: scale(1.2);
+}
+
+.buttonsWrapper {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.buttonsWrapper button {
+    cursor: pointer;
+    border-radius: 4px;
+    max-width: 100px;
+    padding: 8px 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.modalCancelButton {
+    background-color: transparent;
+    border: 1px solid gray;
+    color: gray;
+}
+
+.modalCancelButton:hover {
+    background-color: #515151;
+}
+
+.modalDeleteButton {
+    border: none;
+    background-color: #4c35e3;
+    color: #fafafa;
+}
+
+.modalDeleteButton:hover {
+    background-color: #6600ff;
+}
+
 @media (max-width: 949px) {
     .question {
         width: 100%;

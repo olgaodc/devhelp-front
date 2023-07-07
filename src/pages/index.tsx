@@ -24,7 +24,7 @@ export default function HomePage({ questionsData }: any) {
   const router = useRouter();
   const [questions, setQuestions] = useState<QuestionsProps>(questionsData);
   const [showQuestionModal, setShowQuestionModal] = useState(false);
-  const [displayQuestions, setDisplayQuestions] = useState<QuestionsProps>(questionsData);
+  const [displayQuestions, setDisplayQuestions] = useState<QuestionsProps>(questions);
 
   const answeredQuestions = () => {
     const filteredQuestions = questions ? questions.filter(question => question.answersIds.length > 0) : [];
@@ -124,6 +124,7 @@ export default function HomePage({ questionsData }: any) {
                     {displayQuestions && displayQuestions.length} questions
                   </div>
                 )}
+
                 <div className={styles.buttonsWrapper}>
                   <button onClick={answeredQuestions}>Answered</button>
                   <button onClick={unansweredQuestions}>Unanswered</button>
