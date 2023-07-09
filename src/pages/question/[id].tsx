@@ -143,7 +143,6 @@ const QuestionPage = ({ questionInfo }: any) => {
 
     } catch {
       router.push('/logIn');
-      // console.log(err)
     }
   }
 
@@ -181,13 +180,13 @@ const QuestionPage = ({ questionInfo }: any) => {
                   )}
                 </div>
               </div>
-            )
-            }
+            )}
 
             <div className={styles.newAnswerSection}>
               <h3 className={styles.newAnswerTitle}>Your Answer</h3>
               <div>You must be logged in to answer</div>
               <textarea
+                name='text'
                 value={newAnswerText}
                 className={styles.newAnswerBox}
                 onChange={(event) => setNewAnswerText(event.target.value)}

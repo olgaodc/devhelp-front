@@ -9,7 +9,6 @@
     box-shadow: 5px 5px 20px 4px #e6e5e5;
     position: relative;
     word-break: break-word;
-    /* word-break: break-all; */
     transition: 0.3s;
 }
 
@@ -157,6 +156,7 @@
 
 .buttonsWrapper button {
     cursor: pointer;
+    border: 0;
     border-radius: 4px;
     max-width: 100px;
     padding: 8px 15px;
@@ -166,16 +166,14 @@
 
 .modalCancelButton {
     background-color: transparent;
-    border: 1px solid gray;
-    color: gray;
+    color: #4c35e3;
 }
 
 .modalCancelButton:hover {
-    background-color: #515151;
+    background-color: #d5d2d969;
 }
 
 .modalDeleteButton {
-    border: none;
     background-color: #4c35e3;
     color: #fafafa;
 }

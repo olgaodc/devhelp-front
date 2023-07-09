@@ -55,8 +55,8 @@ const QuestionModal: FC<QuestionModalProps> = ({ closeModal, onQuestionAdded }) 
       return true;
     }
 
-    return false;
     setMessage('');
+    return false;
   }
 
   return (
@@ -77,7 +77,6 @@ const QuestionModal: FC<QuestionModalProps> = ({ closeModal, onQuestionAdded }) 
         </div>
        
         <div className={styles.inputWrapper}>
-          {/* <label htmlFor="title">Question title:</label> */}
           <input
             type="text"
             name="title"

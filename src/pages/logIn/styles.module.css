@@ -6,7 +6,6 @@
 }
 
 .formWrapper {
-    /* min-height: calc(100vh - 256px); */
     margin: 80px 0 160px;
 }
 
@@ -72,7 +71,6 @@
 
 .formTextLink:hover {
     color: #6600FF;
-    /* text-decoration: underline; */
 }
 
 .message {
@@ -86,7 +84,6 @@
     }
 
     .formWrapper {
-        /* min-height: calc(100vh - 349px); */
         margin: 60px 0 120px;
     }
 

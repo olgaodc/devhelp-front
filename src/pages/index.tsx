@@ -39,7 +39,19 @@ export default function HomePage({ questionsData }: any) {
   //pridejus nauja klausima, atvaizduoja visus klausimus kartu su nauju
   const addQuestion = (newQuestion: QuestionProps) => {
     setQuestions(prevState => prevState ? [newQuestion, ...prevState] : [newQuestion]);
-    setDisplayQuestions(prevState => prevState ? [newQuestion, ...prevState] : [newQuestion]);
+
+    //patikrina ar rodomi atsakyti klausimai, naujas atsakymas NEpridedamas prie atsakytu klausimu
+    const answeredQuestions = questions ? questions.filter(question => question.answersIds.length > 0) : [];
+    if (displayQuestions!.length === answeredQuestions.length) {
+      for (let i = 0; i < displayQuestions!.length; i++) {
+        if (displayQuestions![i] === answeredQuestions[i]) {
+          setDisplayQuestions(prevState => prevState ? [...prevState] : []);
+          break;
+        }
+      }
+    } else {
+      setDisplayQuestions(prevState => prevState ? [newQuestion, ...prevState] : [newQuestion]);
+    }
   }
 
   const deleteQuestion = async (id: string, event: any) => {
@@ -58,9 +70,6 @@ export default function HomePage({ questionsData }: any) {
       }
 
     } catch (err) {
-      // setTimeout (() => {
-      //   router.push('/logIn');
-      // }, 500)
       router.push('/logIn');
     }
 
@@ -133,6 +142,7 @@ export default function HomePage({ questionsData }: any) {
 
               </div>
             </div>
+            
             <div className={styles.questionsSection}>
               {displayQuestions && displayQuestions.sort((a, b) => Date.parse(b.creationDate) - Date.parse(a.creationDate)).map((question) =>
                 <QuestionCard
@@ -154,7 +164,8 @@ export default function HomePage({ questionsData }: any) {
           <QuestionModal
             closeModal={() => setShowQuestionModal(false)}
             onQuestionAdded={addQuestion}
-          />}
+          />
+        }
         <Footer />
       </div>
     </>

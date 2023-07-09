@@ -100,26 +100,34 @@ const SignUpPage = () => {
             <h2 className={styles.formTitle}>Welcome to DevHelp</h2>
             <div className={styles.nameInputWrapper}>
               <input
-                type="text"
+                name='name'
+                autoComplete='off'
+                type='text'
                 placeholder='Name'
                 value={name}
                 onChange={(event) => { setName(event.target.value) }}
               />
               <input
-                type="text"
-                placeholder='Surname'
+                name='surname'
+                autoComplete='off'
+                type='text'
+                placeholder='Last Name'
                 value={surname}
                 onChange={(event) => { setSurname(event.target.value) }}
               />
             </div>
             <input
-              type="email"
+              name='email'
+              autoComplete='off'
+              type='email'
               placeholder='Email'
               value={email}
               onChange={(event) => { setEmail(event.target.value) }}
             />
             <input
-              type="password"
+              name='password'
+              autoComplete='off'
+              type='password'
               placeholder='Password'
               value={password}
               onChange={(event) => { setPassword(event.target.value) }}
@@ -136,6 +144,7 @@ const SignUpPage = () => {
                 Log In
               </Link>
             </div>
+            
             {isSuccess ?
               (<div className={styles.successMessage}>{message}</div>) : (<div className={styles.errorMessage}>{message}</div>)
             }

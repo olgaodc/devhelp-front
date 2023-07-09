@@ -34,7 +34,6 @@ const LogInPage = () => {
 
     } catch {
       setMessage('Invalid email or password');
-      // console.log(err);
     }
   }
 
@@ -53,18 +52,23 @@ const LogInPage = () => {
             <h2 className={styles.formTitle}>Welcome back</h2>
             <div className={styles.formDescription}>Log in with your DevHelp account to continue</div>
             <input
-              type="email"
+              type='email'
+              name='email'
+              autoComplete='off'
               placeholder='Email'
               value={email}
               onChange={(event) => { setEmail(event.target.value) }}
             />
             <input
-              type="password"
+              type='password'
+              name='password'
+              autoComplete='off'
               placeholder='Password'
               value={password}
               onChange={(event) => { setPassword(event.target.value) }}
             />
             <button className={styles.formButton} onClick={logIn}>Log in</button>
+            
             <div className={styles.formTextWrapper}>
               <span className={styles.formText}>Don't have an account yet? </span>
               <Link className={styles.formTextLink} href={'/signUp'}>Sign Up</Link>
